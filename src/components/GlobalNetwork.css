@@ -1,0 +1,68 @@
+.global-network {
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.global-network__content {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.globe-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.innochi-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: transparent;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Ensure smooth animation on high-refresh displays */
+@media (prefers-reduced-motion: no-preference) {
+  .globe-video {
+    animation-timing-function: linear;
+  }
+}
+
+@media (max-width: 768px) {
+  .global-network {
+    padding: 2rem 1rem;
+  }
+  
+  .globe-container {
+    width: 350px;
+    height: 350px;
+  }
+} 

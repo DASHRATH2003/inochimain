@@ -1,0 +1,146 @@
+/* Quality & Safety Section Styles */
+.quality-safety-section {
+  background-color: #f8f9fa;
+  padding: 80px 0;
+}
+
+.quality-safety-section .section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.quality-safety-section .section-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.quality-safety-section .title-divider {
+  width: 80px;
+  height: 4px;
+  background: #e74c3c;
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+}
+
+.quality-safety-section .section-intro {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.quality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.quality-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quality-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.quality-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 50%;
+  padding: 15px;
+}
+
+.quality-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #e74c3c;
+}
+
+.quality-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.quality-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.quality-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quality-features li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.quality-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+@media (max-width: 992px) {
+  .quality-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .quality-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quality-safety-section .section-title {
+    font-size: 2rem;
+  }
+
+  .quality-card {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quality-safety-section {
+    padding: 60px 0;
+  }
+
+  .quality-safety-section .section-title {
+    font-size: 1.8rem;
+  }
+
+  .quality-safety-section .section-intro {
+    font-size: 1rem;
+  }
+
+  .quality-title {
+    font-size: 1.3rem;
+  }
+} 

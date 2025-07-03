@@ -1,0 +1,92 @@
+.top-bar-wrapper {
+  width: 100%;
+  background-color: #002147;
+  font-family: sans-serif;
+}
+
+/* Compact height, no wrap */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 40px;
+  color: white;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* Social icons */
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  color: white;
+  font-size: 15px;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.social-links a:hover {
+  opacity: 1;
+}
+
+/* Contact section */
+.contact-section {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background-color: #002147;
+  padding: 5px 20px;
+  height: auto;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+.contact-item i {
+  color: white;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.contact-item span {
+  color: white;
+  opacity: 0.9;
+}
+
+.contact-item:hover {
+  opacity: 0.8;
+}
+
+/* Fix overflow */
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Responsive: Stack on small screens */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    height: auto;
+    gap: 8px;
+    padding: 10px 20px;
+  }
+
+  .contact-section {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

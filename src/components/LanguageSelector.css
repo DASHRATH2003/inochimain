@@ -1,0 +1,124 @@
+.language-selector {
+  position: relative;
+  z-index: 1000;
+  margin-left: 20px;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.language-button:hover {
+  opacity: 0.9;
+}
+
+.globe-icon {
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+}
+
+.selected-language {
+  color: currentColor;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.arrow-icon {
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  background-color: #002147;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 160px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-option {
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.language-option:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.language-option.selected {
+  background-color: rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .language-selector {
+    margin-left: 15px;
+  }
+
+  .language-button {
+    padding: 6px 8px;
+  }
+
+  .globe-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .selected-language {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-button {
+    padding: 4px 6px;
+  }
+
+  .selected-language {
+    display: none;
+  }
+
+  .language-dropdown {
+    width: 140px;
+    right: -10px;
+  }
+}
