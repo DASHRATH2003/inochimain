@@ -1,7 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Footer.css';
 import bottomLogo from '../assets/bottomlogo.mp4';
+
+// Custom Link wrapper component
+const ScrollToTopLink = ({ to, children }) => {
+  const navigate = useNavigate();
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+    navigate(to);
+  };
+
+  return (
+    <a href={to} onClick={handleClick}>
+      {children}
+    </a>
+  );
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -48,10 +69,10 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Quick Links</h3>
           <ul className="footer-links">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/products">Products</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><ScrollToTopLink to="/">Home</ScrollToTopLink></li>
+            <li><ScrollToTopLink to="/about">About Us</ScrollToTopLink></li>
+            <li><ScrollToTopLink to="/products">Products</ScrollToTopLink></li>
+            <li><ScrollToTopLink to="/contact">Contact</ScrollToTopLink></li>
           </ul>
         </div>
 
@@ -59,10 +80,10 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Our Products</h3>
           <ul className="footer-links">
-            <li><Link to="/products/spices">Spices</Link></li>
-            <li><Link to="/products/herbs">Herbs</Link></li>
-            <li><Link to="/products/seeds">Seeds</Link></li>
-            <li><Link to="/products">All Products</Link></li>
+            <li><ScrollToTopLink to="/products/spices">Spices</ScrollToTopLink></li>
+            <li><ScrollToTopLink to="/products/herbs">Herbs</ScrollToTopLink></li>
+            <li><ScrollToTopLink to="/products/seeds">Seeds</ScrollToTopLink></li>
+            <li><ScrollToTopLink to="/products">All Products</ScrollToTopLink></li>
           </ul>
         </div>
 
@@ -107,9 +128,9 @@ const Footer = () => {
         <div className="footer-bottom-content">
           <p>&copy; {currentYear} Inochi International. All rights reserved.</p>
           <div className="footer-bottom-links">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/terms">Terms & Conditions</Link>
-            <Link to="/sitemap">Sitemap</Link>
+            <ScrollToTopLink to="/privacy-policy">Privacy Policy</ScrollToTopLink>
+            <ScrollToTopLink to="/terms">Terms & Conditions</ScrollToTopLink>
+            <ScrollToTopLink to="/sitemap">Sitemap</ScrollToTopLink>
           </div>
         </div>
       </div>

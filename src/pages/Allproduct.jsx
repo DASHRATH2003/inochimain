@@ -433,25 +433,31 @@ const AllProducts = () => {
   ];
 
   useEffect(() => {
-    // Update selected category when route parameter changes
-    setSelectedCategory(category || 'all');
-  }, [category]);
+    // Scroll to top when component mounts or category changes
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
 
-  useEffect(() => {
     // Filter products based on selected category
     if (selectedCategory === 'all') {
       setFilteredProducts(allProducts);
     } else {
-      const filtered = allProducts.filter(
-        product => product.category.toLowerCase() === selectedCategory.toLowerCase()
-      );
-      setFilteredProducts(filtered);
+      setFilteredProducts(allProducts.filter(product => product.category === selectedCategory));
     }
   }, [selectedCategory]);
 
   const handleCategoryChange = (newCategory) => {
     setSelectedCategory(newCategory);
-    navigate(`/products/${newCategory}`);
+    // Scroll to top when changing categories
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+    // Update URL without full page reload
+    navigate(`/products${newCategory === 'all' ? '' : '/' + newCategory}`, { replace: true });
   };
 
   return (
