@@ -20,11 +20,11 @@ const TopBar = () => {
             <i className="fas fa-phone"></i>
             <span>+91 7892492739</span>
           </a>
-          <a href="mailto:Vijayakumar@inochiinternational.com" className="contact-item">
+          <a href="mailto:Vijayakumar@inochiinternational.in" className="contact-item">
             <i className="fas fa-envelope"></i>
             <span>Vijayakumar@inochiinternational.in</span>
           </a>
-          <a href="mailto:Rajesh@inochiinternational.com" className="contact-item">
+          <a href="mailto:Rajesh@inochiinternational.in" className="contact-item">
             <i className="fas fa-envelope"></i>
             <span>Rajesh@inochiinternational.in</span>
           </a>
