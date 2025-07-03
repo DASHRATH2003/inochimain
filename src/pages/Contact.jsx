@@ -397,7 +397,7 @@ import "../styles/animations.css";
 const Contact = () => {
   const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
   const [formData, setFormData] = useState({
     from_name: "",
     company_name: "",
@@ -419,23 +419,23 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: '', message: '' });
+    setSubmitStatus({ type: "", message: "" });
 
     try {
-      const response = await fetch('http://localhost:5000/api/send-email', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/api/send-email", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setSubmitStatus({
-          type: 'success',
-          message: 'Thank you for your message! We will get back to you soon.'
+          type: "success",
+          message: "Thank you for your message! We will get back to you soon.",
         });
 
         // Clear form
@@ -450,13 +450,15 @@ const Contact = () => {
           message: "",
         });
       } else {
-        throw new Error(data.message || 'Failed to send message');
+        throw new Error(data.message || "Failed to send message");
       }
     } catch (error) {
-      console.error('Contact Form Error:', error);
+      console.error("Contact Form Error:", error);
       setSubmitStatus({
-        type: 'error',
-        message: `Sorry, something went wrong. Error: ${error.message || 'Unknown error'}`
+        type: "error",
+        message: `Sorry, something went wrong. Error: ${
+          error.message || "Unknown error"
+        }`,
       });
     } finally {
       setIsSubmitting(false);
@@ -500,11 +502,19 @@ const Contact = () => {
                 <h3>Email Us</h3>
                 <p>Quick response for your inquiries</p>
                 <div className="contact-links">
-                  <a href="mailto:vijaykumar@inochiinternational.com" className="contact-link">
-                    <i className="fas fa-envelope"></i> Vijayakumar@inochiinternational.in
+                  <a
+                    href="mailto:vijaykumar@inochiinternational.com"
+                    className="contact-link"
+                  >
+                    <i className="fas fa-envelope"></i>{" "}
+                    Vijayakumar@inochiinternational.in
                   </a>
-                  <a href="mailto:Rajesh@inochiinternational.com" className="contact-link">
-                    <i className="fas fa-envelope"></i> Rajesh@inochiinternational.in
+                  <a
+                    href="mailto:Rajesh@inochiinternational.com"
+                    className="contact-link"
+                  >
+                    <i className="fas fa-envelope"></i>{" "}
+                    Rajesh@inochiinternational.in
                   </a>
                 </div>
               </div>
@@ -538,7 +548,11 @@ const Contact = () => {
                   </div>
                 )}
 
-                <form ref={form} onSubmit={handleSubmit} className="contact-form">
+                <form
+                  ref={form}
+                  onSubmit={handleSubmit}
+                  className="contact-form"
+                >
                   <div className="form-grid">
                     <div className="form-group">
                       <label htmlFor="from_name">Full Name *</label>
@@ -654,10 +668,11 @@ const Contact = () => {
                     className="submit-button"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               </div>
+              
 
               <div className="contact-sidebar slide-in-right">
                 <div className="sidebar-card">
@@ -749,28 +764,25 @@ const Contact = () => {
               </div>
 
               {/* Contact Information */}
-              
-        
-              <section id="map-section" style={{ marginTop: '0', paddingTop: '0' }}>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8876510053493!2d77.70431227379011!3d12.979609987301082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1329c87a3f73%3A0x9f7c4f21e99c6b4b!2s185%2F1A%2C%205th%20Cross%20Rd%2C%20Gururaja%20Layout%2C%20Doddanekundi%2C%20Vibhutipura%2C%20Bengaluru%2C%20Karnataka%20560037!5e0!3m2!1sen!2sin!4v1708506844736!5m2!1sen!2sin"
-    width="100%"
-    height="450"
-    style={{ border: 0, display: 'block' }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    title="Inochi International Office Location"
-  ></iframe>
-</section>
 
-
-
-      
-              
+             
             </div>
           </div>
         </section>
+      </div>
+      <div className="map-section">
+        <div className="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8876510053493!2d77.70431227379011!3d12.979609987301082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1329c87a3f73%3A0x9f7c4f21e99c6b4b!2s185%2F1A%2C%205th%20Cross%20Rd%2C%20Gururaja%20Layout%2C%20Doddanekundi%2C%20Vibhutipura%2C%20Bengaluru%2C%20Karnataka%20560037!5e0!3m2!1sen!2sin!4v1708506844736!5m2!1sen!2sin"
+            width="100%"
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Inochi International Office Location"
+          ></iframe>
+        </div>
       </div>
     </div>
   );
