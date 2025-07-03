@@ -1,17 +1,20 @@
 // src/pages/Contact.jsx
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Contact.css";
 import "../styles/animations.css";
 
 const Contact = () => {
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
   const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
+    from_name: "",
+    company_name: "",
+    from_email: "",
+    phone_number: "",
     country: "",
     subject: "",
-    inquiryType: "general",
+    inquiry_type: "general",
     message: "",
   });
 
@@ -22,10 +25,51 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you for your message! We will get back to you soon.'
+        });
+
+        // Clear form
+        setFormData({
+          from_name: "",
+          company_name: "",
+          from_email: "",
+          phone_number: "",
+          country: "",
+          subject: "",
+          inquiry_type: "general",
+          message: "",
+        });
+      } else {
+        throw new Error(data.message || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Contact Form Error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: `Sorry, something went wrong. Error: ${error.message || 'Unknown error'}`
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -97,27 +141,33 @@ const Contact = () => {
                   within 24 hours
                 </p>
 
-                <form onSubmit={handleSubmit} className="contact-form">
+                {submitStatus.message && (
+                  <div className={`submit-status ${submitStatus.type}`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+
+                <form ref={form} onSubmit={handleSubmit} className="contact-form">
                   <div className="form-grid">
                     <div className="form-group">
-                      <label htmlFor="name">Full Name *</label>
+                      <label htmlFor="from_name">Full Name *</label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
+                        id="from_name"
+                        name="from_name"
+                        value={formData.from_name}
                         onChange={handleChange}
                         placeholder="Your full name"
                         required
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="company">Company Name *</label>
+                      <label htmlFor="company_name">Company Name *</label>
                       <input
                         type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
+                        id="company_name"
+                        name="company_name"
+                        value={formData.company_name}
                         onChange={handleChange}
                         placeholder="Your company name"
                         required
@@ -127,24 +177,24 @@ const Contact = () => {
 
                   <div className="form-grid">
                     <div className="form-group">
-                      <label htmlFor="email">Email Address *</label>
+                      <label htmlFor="from_email">Email Address *</label>
                       <input
                         type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                        id="from_email"
+                        name="from_email"
+                        value={formData.from_email}
                         onChange={handleChange}
                         placeholder="Your email address"
                         required
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="phone">Phone Number *</label>
+                      <label htmlFor="phone_number">Phone Number *</label>
                       <input
                         type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
+                        id="phone_number"
+                        name="phone_number"
+                        value={formData.phone_number}
                         onChange={handleChange}
                         placeholder="Your phone number"
                         required
@@ -166,22 +216,18 @@ const Contact = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="inquiryType">Inquiry Type *</label>
+                      <label htmlFor="inquiry_type">Inquiry Type *</label>
                       <select
-                        id="inquiryType"
-                        name="inquiryType"
-                        value={formData.inquiryType}
+                        id="inquiry_type"
+                        name="inquiry_type"
+                        value={formData.inquiry_type}
                         onChange={handleChange}
                         required
                       >
                         <option value="general">General Inquiry</option>
-                        <option value="import">Import Query</option>
-                        <option value="export">Export Query</option>
-                        <option value="products">Product Information</option>
-                        <option value="quotation">Request Quotation</option>
-                        <option value="partnership">
-                          Business Partnership
-                        </option>
+                        <option value="product">Product Inquiry</option>
+                        <option value="quote">Request Quote</option>
+                        <option value="support">Support</option>
                       </select>
                     </div>
                   </div>
@@ -194,7 +240,7 @@ const Contact = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="Brief subject of your message"
+                      placeholder="Email subject"
                       required
                     />
                   </div>
@@ -206,135 +252,38 @@ const Contact = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Please provide details about your inquiry..."
+                      placeholder="Your message"
                       required
-                      rows="6"
+                      rows="5"
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="submit-btn hover-scale">
-                    Send Message <i className="fas fa-paper-plane"></i>
+                  <button
+                    type="submit"
+                    className="submit-button"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               </div>
 
               {/* Contact Information */}
-              <div className="contact-info-sidebar">
-                <div className="info-section company-info slide-in-right">
-                  <h3>Inochi International Pvt Ltd</h3>
+              <div className="contact-info slide-in-right">
+                <div className="info-card">
+                  <h3>Our Office</h3>
                   <p>
-                    Your trusted partner in global trade, specializing in
-                    premium quality Indian spices, herbs, and seeds.
+                    <i className="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India
+                  </p>
+                  <p>
+                    <i className="fas fa-envelope"></i>{" "}
+                    info@inochiinternational.com
+                  </p>
+                  <p>
+                    <i className="fas fa-phone"></i> +91 9535520948
                   </p>
                 </div>
-
-                <div className="info-section address-info slide-in-right delay-1">
-                  <h3>Head Office</h3>
-                  <address>
-                    <i className="fas fa-map-marker-alt"></i>
-                    <div>
-                    <span style={{ fontSize: "14px" }}>INOCHI INTERNATIONAL PVT LTD</span>
-                      <p>185/1A, 5th Cross Rd,</p>
-                      <p>near Raghavendra Swamy Temple Road,</p>
-                      <p>Gururaja Layout, Doddanekundi,</p>
-                      <p>Vibhutipura, Bengaluru,</p>
-                      <p>Karnataka 560037, India</p>
-                    </div>
-                  </address>
-                </div>
-
-                <div className="info-section social-info slide-in-right delay-2">
-                  <h3>Connect With Us</h3>
-                  <div className="social-links">
-                    
-                     
-                    <a
-                      href="https://twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Twitter"
-                    >
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                    <a
-                      href="https://facebook.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Facebook"
-                    >
-                      <i className="fab fa-facebook"></i>
-                    </a>
-                    <a
-                      href="https://instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram"
-                    >
-                      <i className="fab fa-instagram"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <div className="info-section certifications-info slide-in-right delay-3">
-                  <h3>Our Certifications</h3>
-                  <div className="certifications-grid">
-                    <div className="certification-item">
-                      <div className="certification-icon">
-                        <i className="fas fa-certificate"></i>
-                      </div>
-                      <div className="certification-details">
-                        <h4>ISO 9001:2015</h4>
-                        <p>Quality Management System</p>
-                      </div>
-                    </div>
-                    <div className="certification-item">
-                      <div className="certification-icon">
-                        <i className="fas fa-shield-alt"></i>
-                      </div>
-                      <div className="certification-details">
-                        <h4>FSSAI Certified</h4>
-                        <p>Food Safety Standards</p>
-                      </div>
-                    </div>
-                    <div className="certification-item">
-                      <div className="certification-icon">
-                        <i className="fas fa-leaf"></i>
-                      </div>
-                      <div className="certification-details">
-                        <h4>Spice Board India</h4>
-                        <p>Ministry of Commerce & Industry</p>
-                      </div>
-                    </div>
-                    <div className="certification-item">
-                      <div className="certification-icon">
-                        <i className="fas fa-check-circle"></i>
-                      </div>
-                      <div className="certification-details">
-                        <h4>APEDA Registered</h4>
-                        <p>Export Development Authority</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Map Section */}
-        <section className="map-section fade-in">
-          <div className="container">
-            <div className="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8661100540635!2d77.70331427496693!3d12.981669187334669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1145ec24f7f7%3A0x7c3f93a20a4180c8!2s185%2F1A%2C%205th%20Cross%20Rd%2C%20Gururaja%20Layout%2C%20Doddanekundi%2C%20Bengaluru%2C%20Karnataka%20560037!5e0!3m2!1sen!2sin!4v1709799151443!5m2!1sen!2sin"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Our Location"
-              ></iframe>
             </div>
           </div>
         </section>
