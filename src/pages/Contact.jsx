@@ -104,7 +104,7 @@ const Contact = () => {
                 <p>24/7 dedicated support for our global clients</p>
                 <div className="contact-links">
                   <a href="tel:+919535520948" className="contact-link">
-                    <i className="fas fa-phone"></i> +91 7892492739
+                    <i className="fas fa-phone"></i> +91 9535520948
                   </a>
                   <a href="tel:+91 7892492739" className="contact-link">
                     <i className="fas fa-phone"></i> +91 7019062176
