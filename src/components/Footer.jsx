@@ -91,11 +91,11 @@ const Footer = () => {
           <ul className="footer-links">
             <li>
               <i className="fas fa-phone"></i>
-              <span>+91 9535520948</span>
+              <span>+91 7892492739</span>
             </li>
             <li>
               <i className="fas fa-phone"></i>
-              <span>+91 7892492739</span>
+              <span>+91 7019062176</span>
             </li>
             <li>
               <i className="fas fa-envelope"></i>

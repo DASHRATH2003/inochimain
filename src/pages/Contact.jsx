@@ -3,6 +3,10 @@ import React, { useState, useRef } from "react";
 import "./Contact.css";
 import "../styles/animations.css";
 
+const API_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000/api/send-email'
+  : 'https://inochibackend-9d1h.onrender.com/api/send-email';
+
 const Contact = () => {
   const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,7 +35,7 @@ const Contact = () => {
     setSubmitStatus({ type: "", message: "" });
 
     try {
-      const response = await fetch("https://inochibackend-9d1h.onrender.com/api/send-email", {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,10 +101,10 @@ const Contact = () => {
                 <p>24/7 dedicated support for our global clients</p>
                 <div className="contact-links">
                   <a href="tel:+919535520948" className="contact-link">
-                    <i className="fas fa-phone"></i> +91 9535520948
+                    <i className="fas fa-phone"></i> +91 7892492739
                   </a>
                   <a href="tel:+91 7892492739" className="contact-link">
-                    <i className="fas fa-phone"></i> +91 7892492739
+                    <i className="fas fa-phone"></i> +91 7019062176
                   </a>
                 </div>
               </div>
