@@ -12,9 +12,9 @@ const TopBar = () => {
           <a href="#"><i className="fab fa-youtube"></i></a>
         </div>
         <div className="contact-section">
-          <a href="tel:+917892492739" className="contact-item">
+          <a href="tel:+919535520948" className="contact-item">
             <i className="fas fa-phone"></i>
-            <span>+91  9535520948</span>
+            <span>+91 9535520948</span>
           </a>
           <a href="tel:+917019062176" className="contact-item">
             <i className="fas fa-phone"></i>
