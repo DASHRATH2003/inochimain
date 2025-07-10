@@ -5,7 +5,7 @@ import "../styles/animations.css";
 
 const API_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:5000/api/send-email'
-  : 'https://inochibackend-9d1h.onrender.com/api/send-email';
+  : 'https://inochiagainbackend.onrender.com/api/send-email';
 
 const Contact = () => {
   const form = useRef();
