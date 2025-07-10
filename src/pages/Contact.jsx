@@ -39,10 +39,7 @@ const Contact = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Origin": window.location.origin
         },
-        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
@@ -119,15 +116,19 @@ const Contact = () => {
                 <p>Quick response for your inquiries</p>
                 <div className="contact-links">
                   <a
-                    href="mailto:vijaykumar@inochiinternational.com"
+                    href="mailto:vijaykumar@inochiinternational.in?subject=Business Inquiry for Inochi International&body=Dear Team,%0D%0A%0D%0AI would like to inquire about your products/services.%0D%0A%0D%0ARegards,"
                     className="contact-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-envelope"></i>{" "}
                     Vijayakumar@inochiinternational.in
                   </a>
                   <a
-                    href="mailto:Rajesh@inochiinternational.com"
+                    href="mailto:rajesh@inochiinternational.in?subject=Business Inquiry for Inochi International&body=Dear Team,%0D%0A%0D%0AI would like to inquire about your products/services.%0D%0A%0D%0ARegards,"
                     className="contact-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-envelope"></i>{" "}
                     Rajesh@inochiinternational.in
