@@ -1443,33 +1443,34 @@ section {
 
 .certificates-grid {
   display: flex;
-  gap: 30px;
-  padding: 20px 0;
-  animation: scroll 20s linear infinite;
-  width: fit-content;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-250px * 7)); /* Adjust based on number of certificates */
+  gap: 20px;
+  animation: scroll 30s linear infinite; /* Increased from faster speed to 30 seconds */
+  &:hover {
+    animation-play-state: paused;
   }
 }
 
+.certificates-grid > * {
+  flex: 0 0 auto;
+}
+
+/* Add smooth animation for certificate items */
 .certificate-item {
-  flex: 0 0 250px;
-  background: white;
+  transition: transform 0.3s ease;
   padding: 20px;
+  background: white;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 150px;
+  min-width: 200px;
+}
+
+.certificate-item img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
 }
 
 /* Clone certificates for seamless scrolling */

@@ -91,11 +91,7 @@ const SpiceIntro = () => {
               At Inochi International, we believe that farm-to-fork quality is
               the future of the food industry. As global exporters and importers
               of premium Indian spices, we ensure every batch meets the highest
-              standards of food safety, sustainability, and traceability. Our
-              backward integration programs connect us directly to trusted
-              plantations across India, Vietnam, and Turkey, allowing us to
-              maintain full control over the sourcing, processing, and packaging
-              stages. From fiery chilies to aromatic cardamom, each spice is
+              standards of food safety, sustainability, and traceability.our backward integration program connect us directly to trusted plantation across India Vietnam and turkey allowing us to maintain full control over the sourcing processing and packing source.' From fiery chilies to aromatic cardamom, each spice is
               processed with care, preserving its authentic flavor and
               nutritional integrity.
             </p>

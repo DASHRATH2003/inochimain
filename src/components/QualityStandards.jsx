@@ -82,7 +82,7 @@ const QualityStandards = () => {
     {
       value: 50,
       suffix: "+",
-      label: "Partner Farms"
+      label: "Dealers"
     },
     {
       value: 60,

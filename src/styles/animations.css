@@ -61,45 +61,45 @@
 
 /* Shared Animation Classes */
 .fade-in {
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 1.5s ease-out forwards;
 }
 
 .slide-in-left {
-  animation: slideInLeft 1s ease forwards;
+  animation: slideInLeft 1.5s ease-out forwards;
 }
 
 .slide-in-right {
-  animation: slideInRight 1s ease forwards;
+  animation: slideInRight 1.5s ease-out forwards;
 }
 
 .scale-up {
-  animation: scaleUp 0.5s ease forwards;
+  animation: scaleUp 1s ease-out forwards;
 }
 
 .bounce {
-  animation: bounce 1s ease infinite;
+  animation: bounce 2s ease infinite;
 }
 
 /* Stagger Animation Delays */
 .delay-1 {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
 }
 
 .delay-2 {
-  animation-delay: 0.4s;
-}
-
-.delay-3 {
   animation-delay: 0.6s;
 }
 
+.delay-3 {
+  animation-delay: 0.9s;
+}
+
 .delay-4 {
-  animation-delay: 0.8s;
+  animation-delay: 1.2s;
 }
 
 /* Hover Effects */
 .hover-scale {
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 .hover-scale:hover {
@@ -107,7 +107,7 @@
 }
 
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .hover-lift:hover {
@@ -124,7 +124,7 @@
 .page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .page-exit {
@@ -134,5 +134,5 @@
 .page-exit-active {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 } 
