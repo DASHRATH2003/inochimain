@@ -72,52 +72,55 @@ const SpiceIntro = () => {
 
   return (
     <section className="spice-intro" ref={sectionRef}>
-      <div className="floating-spices">
-        <div className="spice-particle" style={{ "--delay": "0s" }}></div>
-        <div className="spice-particle" style={{ "--delay": "2s" }}></div>
-        <div className="spice-particle" style={{ "--delay": "4s" }}></div>
-        <div className="spice-particle" style={{ "--delay": "6s" }}></div>
-      </div>
-      <div className="spice-intro-content">
-        <div className="spice-intro-text" ref={textRef}>
-          <div className="text-content">
-            <h2 className="spice-intro-title">
-              <span className="highlight">Excellence</span> in Spice and more...
-            </h2>
-            <h3 className="spice-intro-subtitle animate-text">
-              "The business of Spice makes us global."
-            </h3>
-            <p className="spice-intro-description">
-              At Inochi International, we believe that farm-to-fork quality is
-              the future of the food industry. As global exporters and importers
-              of premium Indian spices, we ensure every batch meets the highest
-              standards of food safety, sustainability, and traceability.' From fiery chilies to aromatic cardamom, each spice is
-              processed with care, preserving its authentic flavor and
-              nutritional integrity.
-            </p>
-            <button onClick={handleReadMore} className="read-more-btn">
-              <span className="btn-text">Read more</span>
-              <span className="arrow">→</span>
-              <span className="btn-shine"></span>
-            </button>
-          </div>
+    <div className="floating-spices">
+      <div className="spice-particle" style={{ "--delay": "0s" }}></div>
+      <div className="spice-particle" style={{ "--delay": "2s" }}></div>
+      <div className="spice-particle" style={{ "--delay": "4s" }}></div>
+      <div className="spice-particle" style={{ "--delay": "6s" }}></div>
+    </div>
+  
+    <div className="spice-intro-content">
+      <div className="spice-intro-text" ref={textRef}>
+        <div className="text-content">
+          <h2 className="spice-intro-title">
+            <span className="highlight">Excellence</span> in Spice and more...
+          </h2>
+          <h3 className="spice-intro-subtitle animate-text">
+            "The business of Spice makes us global."
+          </h3>
+          <p className="spice-intro-description">
+            At Inochi International, we believe that farm-to-fork quality is
+            the future of the food industry. As global exporters and importers
+            of premium Indian spices, we ensure every batch meets the highest
+            standards of food safety, sustainability, and traceability. From
+            fiery chilies to aromatic cardamom, each spice is processed with
+            care, preserving its authentic flavor and nutritional integrity.
+          </p>
+          <button onClick={handleReadMore} className="read-more-btn">
+            <span className="btn-text">Read more</span>
+            <span className="arrow">→</span>
+            <span className="btn-shine"></span>
+          </button>
         </div>
-        <div className="spice-grid" ref={imageRef}>
-          {spices.map((spice, index) => (
-            <div
-              key={spice.name}
-              className="spice-item"
-              style={{ "--delay": `${index * 0.1}s` }}
-            >
-              <div className="spice-circle">
-                <img src={spice.image} alt={spice.name} />
-              </div>
-              <p className="spice-name">{spice.name}</p>
+      </div>
+  
+      <div className="spice-grid" ref={imageRef}>
+        {spices.map((spice, index) => (
+          <div
+            key={spice.name}
+            className="spice-item"
+            style={{ "--delay": `${index * 0.1}s` }}
+          >
+            <div className="spice-circle">
+              <img src={spice.image} alt={spice.name} />
             </div>
-          ))}
-        </div>
+            <p className="spice-name">{spice.name}</p>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
+  
   );
 };
 
