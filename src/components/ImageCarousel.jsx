@@ -8,18 +8,26 @@ import './ImageCarousel.css';
 const ImageCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
-  const images = [spiceImage1, spiceImage2, spiceImage3];
+  const originalImages = [spiceImage1, spiceImage2, spiceImage3];
+  
+  // Create an array with duplicated images for smooth infinite scrolling
+  const images = [...originalImages, ...originalImages];
   
   useEffect(() => {
-    // Main carousel rotation
     const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+      setCurrentSlide((prevSlide) => {
+        // When we reach the duplicate set, reset to the original set
+        if (prevSlide >= originalImages.length - 1) {
+          return 0;
+        }
+        return prevSlide + 1;
+      });
     }, 5000);
 
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [originalImages.length]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -31,7 +39,7 @@ const ImageCarousel = () => {
 
   return (
     <div className="hero-section">
-      <div className="hero-content ">
+      <div className="hero-content">
         <h1 className="company-name">Inochi International</h1>
         <p className="company-tagline">
           Excellence in Global Spice Trade. Delivering the finest quality spices <br />
@@ -51,18 +59,19 @@ const ImageCarousel = () => {
               className={`carousel-slide ${index === currentSlide ? 'active' : ''}`}
               style={{
                 transform: `translateX(${100 * (index - currentSlide)}%)`,
+                transition: index === 0 && currentSlide === originalImages.length - 1 ? 'none' : 'transform 0.5s ease-in-out'
               }}
             >
-              <img src={image} alt={`Slide ${index + 1}`} />
+              <img src={image} alt={`Slide ${(index % originalImages.length) + 1}`} />
             </div>
           ))}
         </div>
 
         <div className="carousel-dots">
-          {images.map((_, index) => (
+          {originalImages.map((_, index) => (
             <button
               key={index}
-              className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+              className={`carousel-dot ${index === currentSlide % originalImages.length ? 'active' : ''}`}
               onClick={() => goToSlide(index)}
             />
           ))}
@@ -72,4 +81,4 @@ const ImageCarousel = () => {
   );
 };
 
-export default ImageCarousel; 
+export default ImageCarousel;
