@@ -3,12 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import spiceImage1 from '../assets/Spicesimage1hd.jpg';
 import spiceImage2 from '../assets/spiceimage2hd.png';
 import spiceImage3 from '../assets/spiceimage3hd.jpg';
+import spiceImage4 from '../assets/spice15.jpg';
+import spiceImage5 from '../assets/spice16.jpg';
+import spiceImage6 from '../assets/spice17.jpg';
+import spiceImage7 from '../assets/spice18.jpg';
 import './ImageCarousel.css';
 
 const ImageCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
-  const originalImages = [spiceImage1, spiceImage2, spiceImage3];
+  const originalImages = [
+    spiceImage1, 
+    spiceImage2, 
+    spiceImage3,
+    spiceImage4,
+    spiceImage5,
+    spiceImage6,
+    spiceImage7
+  ];
   
   // Create an array with duplicated images for smooth infinite scrolling
   const images = [...originalImages, ...originalImages];

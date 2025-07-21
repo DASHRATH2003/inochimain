@@ -11,7 +11,7 @@ import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import LanguageSelector from './components/LanguageSelector';
 import TopBar from './components/TopBar';
-import ChatBox from './components/ChatBox';
+import WhatsAppButton from './components/WhatsAppButton';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import './App.css';
@@ -25,7 +25,7 @@ function App() {
         <TopBar />
         <LanguageSelector />
         <Navbar />
-        <ChatBox />
+        <WhatsAppButton />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
