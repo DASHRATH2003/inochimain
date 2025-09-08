@@ -89,8 +89,8 @@ const SpiceIntro = () => {
             "The business of Spice makes us global."
           </h3>
           <p className="spice-intro-description">
-            At Inochi International, we believe that farm-to-fork quality is
-            the future of the food industry. As global exporters and importers
+            At inochi international we believe that as uncompromising commitment to quality is the future of food industry.
+            As global exporters and importers
             of premium Indian spices, we ensure every batch meets the highest
             standards of food safety, sustainability, and traceability. From
             fiery chilies to aromatic cardamom, each spice is processed with
